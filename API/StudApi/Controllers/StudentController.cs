@@ -67,5 +67,45 @@ namespace StudApi.Controllers
         {
             _data.Students.RemoveAll(s => s.Id == id);
         }
+
+        [HttpGet("{id}/subjects")]
+        public List<Subject> GetSubjects(int id)
+        {
+            return (from subject in _data.Subjects
+                   where (from ssid in _data.StudentSubjects
+                          where ssid.StudentId == id
+                          select ssid.SubjectId).Contains(subject.Id)
+                   select subject).ToList();
+        }
+
+        [HttpPost("{id}/subjects")]
+        public IActionResult PostSubj (int id, [FromQuery] int subjectId)
+        {
+            if (ValidateSubject(id, subjectId)
+                && !_data.StudentSubjects.Exists(ss => ss.SubjectId == subjectId && ss.StudentId == id)
+            {
+                _data.StudentSubjects.Add(new StudentSubject() { StudentId = id, SubjectId = subjectId });
+                return Ok();
+            }
+            else return BadRequest();
+        }
+
+        [HttpDelete("{id}/subjects")]
+        public IActionResult DeleteSubj(int id, [FromQuery] int subjectId)
+        {
+            if (ValidateSubject(id, subjectId)
+                && _data.StudentSubjects.Exists(ss => ss.SubjectId == subjectId && ss.StudentId == id)
+            {
+                _data.StudentSubjects.Add(new StudentSubject() { StudentId = id, SubjectId = subjectId });
+                return Ok();
+            }
+            else return BadRequest();
+        }
+
+        private bool ValidateSubject(int id, int subjectId)
+        {
+            return _data.Students.Exists(s => s.Id == id) &&
+                _data.Subjects.Exists(s => s.Id == subjectId));
+        }
     }
 }

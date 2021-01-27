@@ -18,7 +18,8 @@ namespace StudApi.Models.DummyData
             Subjects = new List<Subject>()
             { new Subject() { Id = 1, Room = 101, Title = "Math"},
               new Subject() { Id = 2, Room = 202, Title = "Programming"},
-              new Subject() { Id = 3, Room = 303, Title = "Networks"}
+              new Subject() { Id = 3, Room = 303, Title = "Networks"},
+              new Subject() { Id = 4, Room = 303, Title = "DataBases"}
             };
 
             Students = new List<Student>()
@@ -40,9 +41,9 @@ namespace StudApi.Models.DummyData
                 new StudentSubject() { StudentId = 3, SubjectId = 3},
                 new StudentSubject() { StudentId = 3, SubjectId = 4},
                 new StudentSubject() { StudentId = 4, SubjectId = 1},
-                new StudentSubject() { StudentId = 1, SubjectId = 2},
-                new StudentSubject() { StudentId = 1, SubjectId = 3},
-                new StudentSubject() { StudentId = 1, SubjectId = 4}
+                new StudentSubject() { StudentId = 4, SubjectId = 2},
+                new StudentSubject() { StudentId = 4, SubjectId = 3},
+                new StudentSubject() { StudentId = 4, SubjectId = 4}
             };
         }
     }
