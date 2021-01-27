@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace StudApi.Models
 {
@@ -16,6 +12,5 @@ namespace StudApi.Models
         public string Surname { get; set; }
 
         public string Patronimic { get; set; }
-
     }
 }
