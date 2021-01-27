@@ -7,5 +7,10 @@ namespace StudApi.Models.DummyData
 {
     interface IDummyData
     {
+        public List<Subject> Subjects { get; set; }
+
+        public List<Student> Students { get; set; }
+
+        public List<StudentSubject> StudentSubjects { get; set; }
     }
 }

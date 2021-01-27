@@ -5,7 +5,7 @@ namespace StudApi.Models.DummyData
     /// <summary>
     /// Didn't make it static to practice DI
     /// </summary>
-    public class DataSource
+    public class DataSource : IDummyData
     {
         public List<Subject> Subjects { get; set; }
 
@@ -13,7 +13,7 @@ namespace StudApi.Models.DummyData
 
         public List<StudentSubject> StudentSubjects { get; set; }
 
-        static DataSource()
+        public DataSource()
         {
             Subjects = new List<Subject>()
             { new Subject() { Id = 1, Room = 101, Title = "Math"},
