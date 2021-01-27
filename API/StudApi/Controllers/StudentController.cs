@@ -82,7 +82,7 @@ namespace StudApi.Controllers
         public IActionResult PostSubj (int id, [FromQuery] int subjectId)
         {
             if (ValidateSubject(id, subjectId)
-                && !_data.StudentSubjects.Exists(ss => ss.SubjectId == subjectId && ss.StudentId == id)
+                && !ExistSubStud(id, subjectId))
             {
                 _data.StudentSubjects.Add(new StudentSubject() { StudentId = id, SubjectId = subjectId });
                 return Ok();
@@ -94,18 +94,23 @@ namespace StudApi.Controllers
         public IActionResult DeleteSubj(int id, [FromQuery] int subjectId)
         {
             if (ValidateSubject(id, subjectId)
-                && _data.StudentSubjects.Exists(ss => ss.SubjectId == subjectId && ss.StudentId == id)
+                && ExistSubStud(id, subjectId))
             {
-                _data.StudentSubjects.Add(new StudentSubject() { StudentId = id, SubjectId = subjectId });
+                _data.StudentSubjects.RemoveAll(ss => ss.StudentId == id && ss.SubjectId == subjectId);
                 return Ok();
             }
             else return BadRequest();
         }
 
+        private bool ExistSubStud(int id, int subjectId)
+        {
+            return _data.StudentSubjects.Exists(ss => ss.SubjectId == subjectId && ss.StudentId == id);
+        }
+
         private bool ValidateSubject(int id, int subjectId)
         {
             return _data.Students.Exists(s => s.Id == id) &&
-                _data.Subjects.Exists(s => s.Id == subjectId));
+                _data.Subjects.Exists(s => s.Id == subjectId);
         }
     }
 }
