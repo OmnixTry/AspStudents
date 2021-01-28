@@ -1,10 +1,12 @@
-﻿using StudApi.Interfaces;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StudApi.Models
 {
-    public class Subject : ICopyable<Subject>
+    public class SubjectViewModel
     {
         [Required]
         public int Id { get; set; }
@@ -13,10 +15,7 @@ namespace StudApi.Models
 
         public int Room { get; set; }
 
-        public void CopyProperties(Subject data)
-        {
-            Title = data.Title;
-            Room = data.Room;
-        }
+        public List<Student> Students { get; set; }
+
     }
 }

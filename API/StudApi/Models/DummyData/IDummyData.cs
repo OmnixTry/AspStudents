@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudApi.Models.DummyData
 {
-    interface IDummyData
+    public interface IDummyData
     {
         public List<Subject> Subjects { get; set; }
 
