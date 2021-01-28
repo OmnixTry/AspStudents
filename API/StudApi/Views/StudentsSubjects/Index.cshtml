@@ -1,8 +1,33 @@
-﻿<html>
+﻿@model List<SubjectViewModel>
+<html>
 <head>
     <title>XD</title>
 </head>
 <body>
     <h1>Henol</h1>
+    <table border="1" align="center" cellpadding="10">
+        @{ foreach (var subject in Model)
+            {
+                <tr>
+                    <td>@subject.Id</td>
+                    <td>@subject.Title</td>
+                    <td>@subject.Room</td>
+                    <td>
+                        <table>
+                            @foreach (var student in subject.Students)
+                            {
+                                <tr>
+                                    <td>
+                                        <p>@student.Name @student.Surname</p>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                </tr>
+            }
+
+        }
+    </table>
 </body>
 </html>
